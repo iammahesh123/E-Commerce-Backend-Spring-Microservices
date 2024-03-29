@@ -8,11 +8,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="UserService" />
+        <module name="ProductService" />
+        <module name="EurekaServerService" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="EurekaServerService" options="-parameters" />
+      <module name="ProductService" options="-parameters" />
       <module name="UserService" options="-parameters" />
     </option>
   </component>
