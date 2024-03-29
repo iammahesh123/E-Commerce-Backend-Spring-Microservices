@@ -18,7 +18,7 @@ Our eCommerce platform consists of the following microservices:
 3. `Order Service`: Processes and manages orders placed by customers.
 4. `Payment Service`: Handles payment processing and integration with payment gateways.
 ## Entity-Relationship Diagram (ERD)
-![ERD](path/to/your/ERD/image.png)
+![ERD](https://github.com/iammahesh123/E-Commerce-Backend-Spring-Microservices/blob/master/EntityFinal.jpg)
 ## Note: 
 This README file focuses on the `User Service` microservice. 
 ## User Service
