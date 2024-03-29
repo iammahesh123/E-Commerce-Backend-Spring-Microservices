@@ -64,5 +64,3 @@ To run the microservices locally, follow the instructions provided in each micro
 ## Contributing
 We welcome contributions from the community! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request. For major changes, please discuss them in advance.
 
-## License
-This project is licensed under the MIT License.
