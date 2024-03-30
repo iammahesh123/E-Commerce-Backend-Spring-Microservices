@@ -6,6 +6,7 @@ import lombok.*;
 import java.io.Serializable;
 
 @Data
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "products")
@@ -22,13 +23,13 @@ public class Product extends AbstractMappedEntity implements Serializable {
     @Column(name = "product_name")
     private String productName;
 
-    @Column(name = "product_imageUrl")
+    @Column(name = "product_image_url")
     private String productImageUrl;
 
     @Column(name = "sku")
     private String sku;
 
-    @Column(name = "product_price")
+    @Column(name = "product_price", columnDefinition = "decimal")
     private Double price;
 
     @Column(name = "product_quantity")

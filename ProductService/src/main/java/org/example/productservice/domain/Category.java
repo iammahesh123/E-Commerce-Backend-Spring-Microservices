@@ -2,19 +2,18 @@ package org.example.productservice.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Set;
 
-@Data
-@AllArgsConstructor
+@Entity
+@Table(name = "categories")
 @NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true, exclude = {"subCategories", "parentCategory", "products"})
+@Data
 @Builder
-@Table(name = "category")
 public class Category extends AbstractMappedEntity implements Serializable {
 
     @Id
@@ -25,7 +24,7 @@ public class Category extends AbstractMappedEntity implements Serializable {
     @Column(name = "category_name")
     private String categoryName;
 
-    @Column(name = "category_imageUrl")
+    @Column(name = "category_image_url")
     private String categoryImageUrl;
 
     @JsonIgnore

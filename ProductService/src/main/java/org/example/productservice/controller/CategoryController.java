@@ -7,25 +7,22 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.productservice.dto.CategoryDTO;
 import org.example.productservice.response.DTOCollectionResponse;
 import org.example.productservice.service.CategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("api/category")
+@RequestMapping("/api/category")
 public class CategoryController {
 
-    @Autowired
-    private CategoryService categoryService;
+    private final CategoryService categoryService;
 
     @PostMapping
     public ResponseEntity<CategoryDTO> save(
             @RequestBody
             @NotNull(message = "Input must be not null")
-            @Valid CategoryDTO categoryDTO)
-    {
+            @Valid CategoryDTO categoryDTO) {
         return ResponseEntity.ok(this.categoryService.save(categoryDTO));
     }
 
@@ -34,47 +31,30 @@ public class CategoryController {
         return ResponseEntity.ok(new DTOCollectionResponse<>(this.categoryService.findAll()));
     }
 
-    @GetMapping("/categoryId")
+    @GetMapping("/{categoryId}") // Corrected the path variable name
     public ResponseEntity<CategoryDTO> findById(
             @PathVariable("categoryId")
-            @RequestBody
             @NotNull(message = "Input must be not NULL")
-            @Valid final String categoryId)
-    {
+            @Valid final String categoryId) {
         return ResponseEntity.ok(this.categoryService.findById(Integer.parseInt(categoryId)));
     }
 
-    @PutMapping
-    public ResponseEntity<CategoryDTO> update(
-            @RequestBody
-            @NotNull(message = "Input must be not NULL")
-            @Valid CategoryDTO categoryDTO) {
-        return ResponseEntity.ok(this.categoryService.update(categoryDTO));
-    }
-
-    @PutMapping("/categoryId")
+    @PutMapping("/{categoryId}") // Corrected the path variable name
     public ResponseEntity<CategoryDTO> update(
             @PathVariable("categoryId")
-            @RequestBody
-            @NotNull(message = "Input must be not null")
+            @NotNull(message = "Input must be not NULL")
             @Valid String categoryId,
             @RequestBody
             @NotNull(message = "Input must be not null")
-            @Valid CategoryDTO categoryDTO)
-    {
-        return ResponseEntity.ok(this.categoryService.update(Integer.parseInt(categoryId),categoryDTO));
+            @Valid CategoryDTO categoryDTO) {
+        return ResponseEntity.ok(this.categoryService.update(Integer.parseInt(categoryId), categoryDTO));
     }
 
-    @DeleteMapping("/categoryId")
+    @DeleteMapping("/{categoryId}") // Corrected the path variable name
     public ResponseEntity<Boolean> delete(
             @PathVariable("categoryId")
-            @RequestBody
             @NotNull(message = "Input must be not NULL")
-            @Valid String categoryId,
-            @RequestBody
-            @NotNull(message = "Input must be not NULL")
-            @Valid CategoryDTO categoryDTO)
-    {
+            @Valid String categoryId) {
         this.categoryService.deleteById(Integer.parseInt(categoryId));
         return ResponseEntity.ok(true);
     }
