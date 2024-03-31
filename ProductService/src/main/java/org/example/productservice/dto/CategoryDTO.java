@@ -2,15 +2,18 @@ package org.example.productservice.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Set;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CategoryDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;

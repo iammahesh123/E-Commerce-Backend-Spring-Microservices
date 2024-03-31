@@ -3,6 +3,7 @@ package org.example.productservice.implementation;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.productservice.domain.Category;
 import org.example.productservice.dto.CategoryDTO;
 import org.example.productservice.exception.CategoryNotFoundException;
 import org.example.productservice.helper.CategoryMapping;
@@ -14,14 +15,22 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.example.productservice.helper.CategoryMapping.convertToDTO;
+import static org.example.productservice.helper.CategoryMapping.convertToEntity;
+
 @Service
 @Transactional
 @Slf4j
-@RequiredArgsConstructor
+
 public class CategoryServiceImplementation implements CategoryService {
 
+    private final CategoryRepository categoryRepository;
+
     @Autowired
-    private CategoryRepository categoryRepository;
+    public CategoryServiceImplementation(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
+
     @Override
     public List<CategoryDTO> findAll() {
         log.info("CategoryDTO, Fetch all the categories");
@@ -40,10 +49,24 @@ public class CategoryServiceImplementation implements CategoryService {
 
     }
 
-    @Override
     public CategoryDTO save(CategoryDTO categoryDTO) {
-        log.info("CategoryDTO, save the category");
-        return CategoryMapping.map(this.categoryRepository.save(CategoryMapping.map(categoryDTO)));
+        log.info("Saving the category");
+
+        // Convert DTO to Entity
+        Category category = convertToEntity(categoryDTO);
+
+        // If the parent category is provided in the DTO, find it in the database
+        if (categoryDTO.getParentCategoryDTO() != null && categoryDTO.getParentCategoryDTO().getCategoryId() != null) {
+            Category parentCategory = categoryRepository.findById(categoryDTO.getParentCategoryDTO().getCategoryId())
+                    .orElseThrow(() -> new RuntimeException("Parent category not found"));
+            category.setParentCategory(parentCategory);
+        }
+
+        // Save the category entity
+        Category savedCategory = this.categoryRepository.save(category);
+
+        // Convert the saved entity back to DTO and return
+        return convertToDTO(savedCategory);
     }
 
     @Override

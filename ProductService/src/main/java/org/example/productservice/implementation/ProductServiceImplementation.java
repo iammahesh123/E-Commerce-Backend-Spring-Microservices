@@ -8,6 +8,7 @@ import org.example.productservice.exception.ProductNotFoundException;
 import org.example.productservice.helper.ProductMapping;
 import org.example.productservice.repository.ProductRepository;
 import org.example.productservice.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ProductServiceImplementation implements ProductService {
 
+    @Autowired
     private ProductRepository productRepository;
     @Override
     public List<ProductDTO> findAll() {

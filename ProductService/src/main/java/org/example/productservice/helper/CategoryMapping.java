@@ -46,6 +46,24 @@ public interface CategoryMapping {
 
 
     }
+    public static Category convertToEntity(CategoryDTO categoryDTO) {
+        Category category = new Category();
+        category.setCategoryId(categoryDTO.getCategoryId());
+        category.setCategoryName(categoryDTO.getCategoryName());
+        category.setCategoryImageUrl(categoryDTO.getCategoryImageUrl());
+        // You may handle subcategories and products similarly if needed
+
+        return category;
+    }
+    public static CategoryDTO convertToDTO(Category category) {
+        CategoryDTO categoryDTO = new CategoryDTO();
+        categoryDTO.setCategoryId(category.getCategoryId());
+        categoryDTO.setCategoryName(category.getCategoryName());
+        categoryDTO.setCategoryImageUrl(category.getCategoryImageUrl());
+        // You may handle subcategories and products similarly if needed
+
+        return categoryDTO;
+    }
 
 
 }
