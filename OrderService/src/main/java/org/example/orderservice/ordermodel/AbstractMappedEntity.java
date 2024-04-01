@@ -1,4 +1,4 @@
-package org.example.productservice.domain;
+package org.example.orderservice.ordermodel;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
