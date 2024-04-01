@@ -14,7 +14,4 @@ public class MapperConfig {
         return new JsonMapper()
                 .enable(SerializationFeature.INDENT_OUTPUT);
     }
-
-
-
 }

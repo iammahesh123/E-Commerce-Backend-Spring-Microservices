@@ -69,7 +69,4 @@ public class AddressController {
         this.addressService.deleteById(Integer.parseInt(addressId));
         return ResponseEntity.ok(Boolean.TRUE);
     }
-
-
-
 }
