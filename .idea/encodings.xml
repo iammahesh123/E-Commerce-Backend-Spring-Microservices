@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/CloudConfig/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/EurekaServerService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/EurekaServerService/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/FavouriteService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FavouriteService/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/OrderService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/OrderService/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ProductService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ProductService/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ShippingService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/UserService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/UserService/src/main/resources" charset="UTF-8" />
   </component>
 </project>

@@ -8,19 +8,23 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="FavouriteService" />
-        <module name="OrderService" />
         <module name="UserService" />
         <module name="ProductService" />
         <module name="EurekaServerService" />
+        <module name="CloudConfig" />
+        <module name="ShippingService" />
+        <module name="OrderService" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="CloudConfig" options="-parameters" />
       <module name="EurekaServerService" options="-parameters" />
       <module name="FavouriteService" options="-parameters" />
       <module name="OrderService" options="-parameters" />
       <module name="ProductService" options="-parameters" />
+      <module name="ShippingService" options="-parameters" />
       <module name="UserService" options="-parameters" />
     </option>
   </component>
