@@ -1,0 +1,95 @@
+
+server:
+  servlet:
+    context-path: /
+  port: 9056
+
+spring:
+  config:
+    import: ${SPRING_CONFIG_IMPORT:optional:configserver:http://localhost:9296}
+  application:
+    name: API-GATEWAY
+  profiles:
+    active:
+      - default
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin, RETAIN_UNIQUE
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]':
+            allowed-origins: "${CLIENT_HOST:http://localhost:4200}"
+            allowed-headers: "*"
+            exposed-headers: "*"
+            allow-credentials: true
+            allowed-methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - PATCH
+              - OPTIONS
+      routes:
+        - id: ORDER-SERVICE
+          uri: lb://OrderService
+          predicates:
+            - Path=/order-service/**
+       # - id: PAYMENT-SERVICE
+       #   uri: lb://PAYMENT-SERVICE
+        #  predicates:
+        #    - Path=/payment-service/**
+        - id: PRODUCT-SERVICE
+          uri: lb://ProductService
+          predicates:
+            - Path=/product-service/**
+        - id: SHIPPING-SERVICE
+          uri: lb://ShippingService
+          predicates:
+            - Path=/shipping-service/**
+        - id: USER-SERVICE
+          uri: lb://UserService
+          predicates:
+            - Path=/user-service/**
+        - id: FAVOURITE-SERVICE
+          uri: lb://FavouriteService
+          predicates:
+            - Path=/favourite-service/**
+ #       - id: PROXY-CLIENT
+    #      uri: lb://PROXY-CLIENT
+     #     predicates:
+       #     - Path=/app/**
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      apiGateway:
+        register-health-indicator: true
+        event-consumer-buffer-size: 10
+        automatic-transition-from-open-to-half-open-enabled: true
+        failure-rate-threshold: 50
+        minimum-number-of-calls: 5
+        permitted-number-of-calls-in-half-open-state: 3
+        sliding-window-size: 10
+        wait-duration-in-open-state: 5s
+        sliding-window-type: COUNT_BASED
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE:http://localhost:8080/eureka}
+  instance:
+    hostname: ${EUREKA_INSTANCE:localhost}
+
+

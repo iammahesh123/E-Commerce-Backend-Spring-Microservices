@@ -11,6 +11,8 @@
         <option value="$PROJECT_DIR$/FavouriteService/pom.xml" />
         <option value="$PROJECT_DIR$/CloudConfig/pom.xml" />
         <option value="$PROJECT_DIR$/ShippingService/pom.xml" />
+        <option value="$PROJECT_DIR$/ApiGateway/pom.xml" />
+        <option value="$PROJECT_DIR$/PaymentService/pom.xml" />
       </list>
     </option>
   </component>
