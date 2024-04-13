@@ -30,21 +30,29 @@ The User Service microservice is responsible for managing user-related functiona
 - `User information retrieval`: Provides endpoints for retrieving user details.
 ### Endpoints
 #### User Management
-1. `GET /api/users`: Retrieves all users.
-2. `GET /api/users/{userId}`: Retrieves a user by ID.
-3. `POST /api/users`: Creates a new user.
-4. `PUT /api/users`: Updates an existing user.
-5. `PUT /api/users/{userId}`: Updates an existing user by ID.
-6. `DELETE /api/users/{userId}`: Deletes a user by ID.
-7. `GET /api/users/username/{username}`: Retrieves a user by username.
+
+
+| URL                                                    | Method | Remarks                        |
+|--------------------------------------------------------|--------|--------------------------------|
+| `http:localhost:9050/api/users`                         | GET    | Retrieve all users             |
+| `http:localhost:9050/api/users/{userId}`                 | GET    | Retrieve user by ID            |
+| `http:localhost:9050/api/users`                          | POST   | Add a new user                 |
+| `http:localhost:9050/api/users/{userId}`                 | PUT    | Update user by ID              |
+| `http:localhost:9050/api/users/{userId}`                 | DELETE | Delete user by ID              |
+
+
 #### Credential Management
-1. `GET /api/credential`: Retrieves all credentials.
-2. `GET /api/credential/{credentialId}`: Retrieves a credential by ID.
-3. `POST /api/credential`: Creates a new credential.
-4. `PUT /api/credential`: Updates an existing credential.
-5. `PUT /api/credential/{credentialId}`: Updates an existing credential by ID.
-6. `DELETE /api/credential/{credentialId}`: Deletes a credential by ID.
-7. `GET /api/credential/username/{username}`: Retrieves a credential by username.
+| URL                                                               | Method | Remarks                        |
+|--------------------------------------------------------------------|--------|--------------------------------|
+| `http:localhost:9050/api/credential`                               | GET    | Retrieves all credentials       |
+| `http:localhost:9050/api/credential/{credentialId}`                 | GET    | Retrieves a credential by ID   |
+| `http:localhost:9050/api/credential`                                | POST   | Creates a new credential       |
+| `http:localhost:9050/api/credential`                                | PUT   | Updates an existing credential  |
+| `http:localhost:9050/api/credential/{credentialId}`                 | PUT    | Updates an existing credential by ID |
+| `http:localhost:9050/api/credential/{credentialId}`                 | DELETE | Deletes a credential by ID        |
+| `http:localhost:9050/api/username/{username}`                      | GET    | Retrieves a credential by username  |
+
+
 #### Address Management
 1. `GET /api/address`: Retrieves all addresses.
 2. `GET /api/address/{addressId}`: Retrieves an address by ID.
