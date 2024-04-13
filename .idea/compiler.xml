@@ -10,6 +10,7 @@
         <module name="FavouriteService" />
         <module name="UserService" />
         <module name="ProductService" />
+        <module name="ProxyClient" />
         <module name="EurekaServerService" />
         <module name="CloudConfig" />
         <module name="ShippingService" />
@@ -28,6 +29,7 @@
       <module name="OrderService" options="-parameters" />
       <module name="PaymentService" options="-parameters" />
       <module name="ProductService" options="-parameters" />
+      <module name="ProxyClient" options="-parameters" />
       <module name="ShippingService" options="-parameters" />
       <module name="UserService" options="-parameters" />
     </option>

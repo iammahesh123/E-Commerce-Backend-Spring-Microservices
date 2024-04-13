@@ -13,6 +13,7 @@
         <option value="$PROJECT_DIR$/ShippingService/pom.xml" />
         <option value="$PROJECT_DIR$/ApiGateway/pom.xml" />
         <option value="$PROJECT_DIR$/PaymentService/pom.xml" />
+        <option value="$PROJECT_DIR$/ProxyClient/pom.xml" />
       </list>
     </option>
   </component>
