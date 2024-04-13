@@ -15,22 +15,7 @@ spring:
   cloud:
     gateway:
       default-filters:
-        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin, RETAIN_UNIQUE
-      globalcors:
-        add-to-simple-url-handler-mapping: true
-        cors-configurations:
-          '[/**]':
-            allowed-origins: "${CLIENT_HOST:http://localhost:4200}"
-            allowed-headers: "*"
-            exposed-headers: "*"
-            allow-credentials: true
-            allowed-methods:
-              - GET
-              - POST
-              - PUT
-              - DELETE
-              - PATCH
-              - OPTIONS
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
       routes:
         - id: ORDER-SERVICE
           uri: lb://OrderService
@@ -60,6 +45,12 @@ spring:
     #      uri: lb://PROXY-CLIENT
      #     predicates:
        #     - Path=/app/**
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
 
 resilience4j:
   circuitbreaker:
@@ -88,8 +79,9 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: ${EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE:http://localhost:8080/eureka}
+      defaultZone: http://localhost:9099/eureka
   instance:
-    hostname: ${EUREKA_INSTANCE:localhost}
+    prefer-ip-address: true
+
 
 
