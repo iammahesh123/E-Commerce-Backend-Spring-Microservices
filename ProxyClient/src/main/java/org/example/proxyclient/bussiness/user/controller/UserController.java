@@ -48,7 +48,4 @@ public class UserController {
     public ResponseEntity<Boolean> deleteById(@PathVariable("userId") final String userId) {
         return ResponseEntity.ok(this.userClientService.deleteById(userId).getBody());
     }
-
-
-
 }

@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "USER-SERVICE", contextId = "verificationTokenClientService", path = "/user-service/api/verificationTokens")
+@FeignClient(name = "USER-SERVICE", contextId = "verificationTokenClientService", url = "http://localhost:9050/user-service/api/verificationTokens")
 public interface VerificationTokenClientService {
 
     @GetMapping

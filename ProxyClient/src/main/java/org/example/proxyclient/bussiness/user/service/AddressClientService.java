@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "USER-SERVICE", contextId = "addressClientService", path = "/user-service/api/address")
+@FeignClient(name = "USER-SERVICE", contextId = "addressClientService", url = "http://localhost:9050/user-service/api/address")
 public interface AddressClientService {
 
     @GetMapping
