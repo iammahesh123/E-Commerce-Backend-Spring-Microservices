@@ -48,9 +48,6 @@ public class CredentialController {
     public ResponseEntity<Boolean> deleteById(@PathVariable("credentialId") final String credentialId) {
         return ResponseEntity.ok(this.credentialClientService.deleteById(credentialId).getBody());
     }
-
-
-
 }
 
 

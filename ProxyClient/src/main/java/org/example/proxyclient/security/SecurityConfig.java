@@ -28,6 +28,7 @@ public class SecurityConfig  {
     private final JwtRequestFilter jwtRequestFilter;
 
 
+    @Bean
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(this.userDetailsService)
                 .passwordEncoder(this.passwordEncoder);
@@ -43,7 +44,7 @@ public class SecurityConfig  {
                 .requestMatchers("/api/users/**").permitAll()
                 .requestMatchers("/").permitAll()
                 .requestMatchers("/api/authenticate/**").permitAll()
-                .requestMatchers("/api/categories/**").permitAll() 
+                .requestMatchers("/api/categories/**").permitAll()
                 .requestMatchers("/api/products/**").permitAll()
                 .requestMatchers("/api/**")
                 .hasAnyRole(RoleBasedAuthority.ROLE_USER.getRole(),

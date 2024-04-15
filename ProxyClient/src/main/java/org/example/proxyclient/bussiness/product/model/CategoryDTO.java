@@ -19,18 +19,18 @@ public class CategoryDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer categoryId;
-    private String categoryTitle;
-    private String imageUrl;
+    private String categoryName;
+    private String categoryImageUrl;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Set<CategoryDTO> subCategoriesDtos;
+    private Set<CategoryDTO> subCategoriesDTO;
 
     @JsonProperty("parentCategory")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private CategoryDTO parentCategoryDto;
+    private CategoryDTO parentCategoryDTO;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Set<ProductDTO> productDtos;
+    private Set<ProductDTO> productDTOS;
 
 }
 

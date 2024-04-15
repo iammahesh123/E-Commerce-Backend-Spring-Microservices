@@ -21,10 +21,10 @@ spring:
           uri: lb://OrderService
           predicates:
             - Path=/order-service/**
-       # - id: PAYMENT-SERVICE
-       #   uri: lb://PAYMENT-SERVICE
-        #  predicates:
-        #    - Path=/payment-service/**
+        - id: PAYMENT-SERVICE
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+            - Path=/payment-service/**
         - id: PRODUCT-SERVICE
           uri: lb://ProductService
           predicates:
@@ -41,10 +41,10 @@ spring:
           uri: lb://FavouriteService
           predicates:
             - Path=/favourite-service/**
- #       - id: PROXY-CLIENT
-    #      uri: lb://PROXY-CLIENT
-     #     predicates:
-       #     - Path=/app/**
+        - id: PROXY-CLIENT
+          uri: lb://ProxyClient
+          predicates:
+            - Path=/**
       globalcors:
         cors-configurations:
           '[/**]':

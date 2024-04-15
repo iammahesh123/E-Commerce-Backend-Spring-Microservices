@@ -13,8 +13,8 @@ public class AppConstant {
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public abstract class DiscoveredDomainsApi {
 
-        public static final String USER_SERVICE_HOST = "http://localhost:9050/user-service";
-        public static final String USER_SERVICE_API_URL = "http://localhost:9050/api/users";
+        public static final String USER_SERVICE_HOST = "http://UserService/user-service";
+        public static final String USER_SERVICE_API_URL = "http://UserService/user-service/api/users";
 
         public static final String PRODUCT_SERVICE_HOST = "http://ProductService/product-service";
         public static final String PRODUCT_SERVICE_API_URL = "http://ProductService/product-service/api/products";

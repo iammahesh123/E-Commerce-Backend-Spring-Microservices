@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "USER-SERVICE", contextId = "credentialClientService", url = "http://localhost:9050/user-service/api/credentials" )
+@FeignClient(name = "UserService", contextId = "credentialClientService", path = "/user-service/api/credential" )
 public interface CredentialClientService {
 
     @GetMapping

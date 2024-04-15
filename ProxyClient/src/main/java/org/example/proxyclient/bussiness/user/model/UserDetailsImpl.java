@@ -48,7 +48,4 @@ public class UserDetailsImpl implements UserDetails {
     public boolean isCredentialsNonExpired() {
         return this.credential.getIsCredentialsNonExpired();
     }
-
-
-
 }

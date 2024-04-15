@@ -25,7 +25,7 @@ public class CredentialController {
         return ResponseEntity.ok(new ResponseCollectionDTO<>(this.credentialService.findAll()));
     }
 
-    @GetMapping("/credentialId")
+    @GetMapping("/{credentialId}")
     public ResponseEntity<CredentialDTO> findById(
             @PathVariable("credentialId")
             @NotBlank(message = "Input must not be blank")

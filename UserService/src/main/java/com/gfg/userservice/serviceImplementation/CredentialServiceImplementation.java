@@ -2,6 +2,7 @@ package com.gfg.userservice.serviceImplementation;
 
 import com.gfg.userservice.dto.CredentialDTO;
 import com.gfg.userservice.exceptions.CredentialNotFoundException;
+import com.gfg.userservice.exceptions.UserObjectNotFoundException;
 import com.gfg.userservice.helperClass.CredentialMapping;
 import com.gfg.userservice.repository.CredentialRepository;
 import com.gfg.userservice.service.CredentialService;
@@ -73,8 +74,8 @@ public class CredentialServiceImplementation implements CredentialService {
     @Override
     public CredentialDTO findByUsername(final String username) {
         log.info("CredentialDTO, Find the Credentials by using UserId");
-        return null;
-        //return CredentialMapping.map(this.credentialRepository.findByUsername(username));
-                //.orElseThrow(() -> new UserObjectNotFoundException(String.format("#### Credential with username: %s not found! ####", username)));
+
+        return CredentialMapping.map(this.credentialRepository.findByUsername(username)
+                .orElseThrow(() -> new UserObjectNotFoundException(String.format("#### Credential with username: %s not found! ####", username))));
     }
 }

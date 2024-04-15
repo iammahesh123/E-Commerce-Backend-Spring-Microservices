@@ -34,8 +34,8 @@ public class JwtUtilImpl implements JwtUtil {
     }
 
     private Claims extractAllClaims(final String token) {
-        //return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
-        return null;
+        return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+
     }
 
     private Boolean isTokenExpired(final String token) {
