@@ -1,6 +1,7 @@
 package com.gfg.userservice.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gfg.userservice.dto.CredentialDTO;
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,14 +9,14 @@ import lombok.*;
 import java.io.Serializable;
 import java.util.Set;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "credentials")
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true, exclude = {"user", "verificationTokens"})
+@Data
 @Builder
-public class Credential extends AbstractMappedEntity implements Serializable {
+public final class Credential extends AbstractMappedEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -54,5 +55,10 @@ public class Credential extends AbstractMappedEntity implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "credential")
     private Set<VerificationToken> verificationTokens;
 
-
+    // Getter method to fetch userId from associated user
+    @JsonProperty("userId")
+    public Integer getUserId() {
+        return user != null ? user.getUserId() : null;
+    }
 }
+

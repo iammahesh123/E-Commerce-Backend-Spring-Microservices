@@ -1,10 +1,13 @@
 package com.gfg.userservice.serviceImplementation;
 
+import com.gfg.userservice.domain.Credential;
+import com.gfg.userservice.domain.User;
 import com.gfg.userservice.dto.CredentialDTO;
 import com.gfg.userservice.exceptions.CredentialNotFoundException;
 import com.gfg.userservice.exceptions.UserObjectNotFoundException;
 import com.gfg.userservice.helperClass.CredentialMapping;
 import com.gfg.userservice.repository.CredentialRepository;
+import com.gfg.userservice.repository.UserRepository;
 import com.gfg.userservice.service.CredentialService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +26,8 @@ public class CredentialServiceImplementation implements CredentialService {
 
     @Autowired
     private CredentialRepository credentialRepository;
+
+    private UserRepository userRepository;
 
 
 
@@ -45,10 +50,30 @@ public class CredentialServiceImplementation implements CredentialService {
                 .orElseThrow(() -> new CredentialNotFoundException(String.format("Credentials not found of this %d",credentialId)));
     }
 
-    @Override
-    public CredentialDTO save(CredentialDTO credentialDto) {
-        log.info("CredentialDTO, Save the Credentials");
 
+//    public CredentialDTO save(CredentialDTO credentialDto) {
+//        log.info("Saving the Credentials");
+//
+//        // Map CredentialDTO to Credential entity
+//        Credential credential = CredentialMapping.map(credentialDto);
+//
+//        // Fetch the user by userId from the database
+//        User user = userRepository.findById(credentialDto.getUserDTO().getUserId())
+//                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+//
+//        // Set the user for the credential
+//        credential.setUser(user);
+//
+//        // Save the credential
+//        Credential savedCredential = credentialRepository.save(credential);
+//
+//        // Map the saved Credential entity back to CredentialDTO and return
+//        return CredentialMapping.map(savedCredential);
+//    }
+
+    @Override
+    public CredentialDTO save(final CredentialDTO credentialDto) {
+        log.info("*** CredentialDto, service; save credential *");
         return CredentialMapping.map(this.credentialRepository.save(CredentialMapping.map(credentialDto)));
     }
 

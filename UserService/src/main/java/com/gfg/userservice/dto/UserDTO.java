@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Optional;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -28,6 +29,7 @@ public class UserDTO implements Serializable {
     @JsonInclude(value = JsonInclude.Include.NON_NULL)
     private Set<AddressDTO> addressDTOs;
 
+    
     @JsonProperty("credential")
     @JsonInclude(value = JsonInclude.Include.NON_NULL)
     private CredentialDTO credentialDTO;

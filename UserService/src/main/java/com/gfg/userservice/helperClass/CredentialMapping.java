@@ -1,5 +1,6 @@
 package com.gfg.userservice.helperClass;
 
+
 import com.gfg.userservice.domain.Credential;
 import com.gfg.userservice.domain.User;
 import com.gfg.userservice.dto.CredentialDTO;
@@ -8,11 +9,14 @@ import com.gfg.userservice.dto.UserDTO;
 public interface CredentialMapping {
 
     public static CredentialDTO map(final Credential credential) {
+        if (credential.getUser() == null) {
+            return null; // Or handle the case where user is null
+        }
         return CredentialDTO.builder()
                 .credentialId(credential.getCredentialId())
                 .username(credential.getUsername())
                 .password(credential.getPassword())
-                .roleBasesAuthority(credential.getRoleBasedAuthority())
+                .roleBasedAuthority(credential.getRoleBasedAuthority())
                 .isEnabled(credential.getIsEnabled())
                 .isAccountNonExpired(credential.getIsAccountNonExpired())
                 .isAccountNonLocked(credential.getIsAccountNonLocked())
@@ -34,7 +38,7 @@ public interface CredentialMapping {
                 .credentialId(credentialDto.getCredentialId())
                 .username(credentialDto.getUsername())
                 .password(credentialDto.getPassword())
-                .roleBasedAuthority(credentialDto.getRoleBasesAuthority())
+                .roleBasedAuthority(credentialDto.getRoleBasedAuthority())
                 .isEnabled(credentialDto.getIsEnabled())
                 .isAccountNonExpired(credentialDto.getIsAccountNonExpired())
                 .isAccountNonLocked(credentialDto.getIsAccountNonLocked())
@@ -51,3 +55,4 @@ public interface CredentialMapping {
                 .build();
     }
 }
+

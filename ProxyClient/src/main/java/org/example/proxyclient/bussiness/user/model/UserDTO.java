@@ -28,4 +28,7 @@ public class UserDTO {
     @JsonProperty("credential")
     @JsonInclude(value = JsonInclude.Include.NON_NULL)
     private CredentialDTO credentialDto;
+
+    public UserDTO(String message) {
+    }
 }

@@ -22,7 +22,7 @@ public class CredentialDTO implements Serializable {
     private Integer credentialId;
     private String username;
     private String password;
-    private RoleBasesAuthority roleBasesAuthority;
+    private RoleBasesAuthority roleBasedAuthority;
     private Boolean isEnabled;
     private Boolean isAccountNonExpired;
     private Boolean isAccountNonLocked;

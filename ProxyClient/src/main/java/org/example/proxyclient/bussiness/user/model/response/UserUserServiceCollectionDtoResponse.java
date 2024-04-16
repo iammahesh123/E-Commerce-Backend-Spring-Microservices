@@ -18,4 +18,6 @@ public class UserUserServiceCollectionDtoResponse implements Serializable {
     private static final long serialVersionUID = 1L;
     private Collection<UserDTO> collection;
 
+    public UserUserServiceCollectionDtoResponse(String message) {
+    }
 }

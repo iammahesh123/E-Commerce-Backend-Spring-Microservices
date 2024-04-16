@@ -25,10 +25,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig  {
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
-    private final JwtRequestFilter jwtRequestFilter;
+   private final JwtRequestFilter jwtRequestFilter;
 
 
-    @Bean
+
+
+
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(this.userDetailsService)
                 .passwordEncoder(this.passwordEncoder);
@@ -41,6 +43,7 @@ public class SecurityConfig  {
                 .csrf().disable()
                 .authorizeRequests()
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .requestMatchers( "/app/**").permitAll()
                 .requestMatchers("/api/users/**").permitAll()
                 .requestMatchers("/").permitAll()
                 .requestMatchers("/api/authenticate/**").permitAll()
