@@ -41,6 +41,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public Boolean authenticate(final String jwt) {
-        return true;
+        return null;
     }
 }

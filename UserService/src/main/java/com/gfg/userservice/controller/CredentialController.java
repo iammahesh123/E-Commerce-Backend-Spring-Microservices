@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/api/credential")
+@RequestMapping("/api/credentials")
 public class CredentialController {
 
     private final CredentialService credentialService;

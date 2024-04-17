@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.proxyclient.bussiness.user.model.CredentialDTO;
 import org.example.proxyclient.bussiness.user.model.response.CredentialUserServiceCollectionDtoResponse;
 import org.example.proxyclient.bussiness.user.service.CredentialClientService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,6 +49,7 @@ public class CredentialController {
     public ResponseEntity<Boolean> deleteById(@PathVariable("credentialId") final String credentialId) {
         return ResponseEntity.ok(this.credentialClientService.deleteById(credentialId).getBody());
     }
+
 }
 
 
