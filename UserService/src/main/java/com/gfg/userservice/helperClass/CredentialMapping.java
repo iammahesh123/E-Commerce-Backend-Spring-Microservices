@@ -9,9 +9,6 @@ import com.gfg.userservice.dto.UserDTO;
 public interface CredentialMapping {
 
     public static CredentialDTO map(final Credential credential) {
-        if (credential.getUser() == null) {
-            return null; // Or handle the case where user is null
-        }
         return CredentialDTO.builder()
                 .credentialId(credential.getCredentialId())
                 .username(credential.getUsername())

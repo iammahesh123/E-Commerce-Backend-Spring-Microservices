@@ -10,5 +10,5 @@ CREATE TABLE credentials (
                              is_credentials_non_expired BOOLEAN DEFAULT true,
                              created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
                              updated_at TIMESTAMP NULL DEFAULT NULL
-);
 
+);

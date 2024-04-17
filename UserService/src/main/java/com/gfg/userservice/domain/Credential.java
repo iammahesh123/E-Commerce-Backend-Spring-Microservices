@@ -47,18 +47,15 @@ public final class Credential extends AbstractMappedEntity implements Serializab
     private Boolean isCredentialsNonExpired;
 
     @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "credential")
     private Set<VerificationToken> verificationTokens;
 
-    // Getter method to fetch userId from associated user
-    @JsonProperty("userId")
-    public Integer getUserId() {
-        return user != null ? user.getUserId() : null;
-    }
+
+
 }
 
