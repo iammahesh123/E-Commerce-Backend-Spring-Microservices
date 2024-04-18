@@ -67,9 +67,9 @@ public class SecurityConfig  {
     return http.build();
     }
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfiguration) throws Exception {
-        return authConfiguration.getAuthenticationManager();
-    }
+//    @Bean
+//    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfiguration) throws Exception {
+//        return authConfiguration.getAuthenticationManager();
+//    }
 
 }
