@@ -29,10 +29,10 @@ public class SecurityConfig  {
 
 
 
-    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(this.userDetailsService)
-                .passwordEncoder(this.passwordEncoder);
-    }
+//    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(this.userDetailsService)
+//                .passwordEncoder(this.passwordEncoder);
+//    }
 
 
     @Bean
