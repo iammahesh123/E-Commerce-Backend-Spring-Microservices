@@ -29,10 +29,10 @@ public class SecurityConfig  {
 
 
 
-//    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(this.userDetailsService)
-//                .passwordEncoder(this.passwordEncoder);
-//    }
+    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(this.userDetailsService)
+                .passwordEncoder(this.passwordEncoder);
+    }
 
 
     @Bean
@@ -67,9 +67,9 @@ public class SecurityConfig  {
     return http.build();
     }
 
-//    @Bean
-//    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfiguration) throws Exception {
-//        return authConfiguration.getAuthenticationManager();
-//    }
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfiguration) throws Exception {
+        return authConfiguration.getAuthenticationManager();
+    }
 
 }
