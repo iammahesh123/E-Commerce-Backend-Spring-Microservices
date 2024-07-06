@@ -1,7 +1,7 @@
 package org.example.shippingservice.service;
 
-import org.example.shippingservice.domain.OrderItemId;
-import org.example.shippingservice.dtos.OrderItemsDTO;
+import org.example.shippingservice.domain.entity.OrderItemId;
+import org.example.shippingservice.domain.dtos.OrderItemsDTO;
 
 import java.util.List;
 

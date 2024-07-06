@@ -1,6 +1,6 @@
 package org.example.productservice.service;
 
-import org.example.productservice.dto.ProductDTO;
+import org.example.productservice.domain.dto.ProductDTO;
 
 import java.util.List;
 

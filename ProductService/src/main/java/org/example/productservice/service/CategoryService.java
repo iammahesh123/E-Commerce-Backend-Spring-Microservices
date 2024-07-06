@@ -1,6 +1,6 @@
 package org.example.productservice.service;
 
-import org.example.productservice.dto.CategoryDTO;
+import org.example.productservice.domain.dto.CategoryDTO;
 import java.util.List;
 
 public interface CategoryService {

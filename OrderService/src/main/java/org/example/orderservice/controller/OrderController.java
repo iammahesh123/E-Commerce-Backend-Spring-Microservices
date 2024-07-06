@@ -5,10 +5,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.orderservice.dtos.OrderDTO;
-import org.example.orderservice.response.ResponseDtoCollection;
+import org.example.orderservice.domain.dtos.OrderDTO;
+import org.example.orderservice.domain.response.ResponseDtoCollection;
 import org.example.orderservice.service.OrderService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

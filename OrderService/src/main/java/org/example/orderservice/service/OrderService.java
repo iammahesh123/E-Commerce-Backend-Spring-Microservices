@@ -1,6 +1,6 @@
 package org.example.orderservice.service;
 
-import org.example.orderservice.dtos.OrderDTO;
+import org.example.orderservice.domain.dtos.OrderDTO;
 
 import java.util.List;
 

@@ -6,10 +6,9 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.productservice.dto.ProductDTO;
-import org.example.productservice.response.DTOCollectionResponse;
+import org.example.productservice.domain.dto.ProductDTO;
+import org.example.productservice.domain.response.DTOCollectionResponse;
 import org.example.productservice.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

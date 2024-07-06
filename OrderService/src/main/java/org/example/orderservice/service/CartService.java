@@ -1,7 +1,6 @@
 package org.example.orderservice.service;
 
-import org.example.orderservice.dtos.CartDTO;
-import org.example.orderservice.ordermodel.Cart;
+import org.example.orderservice.domain.dtos.CartDTO;
 
 import java.util.List;
 
