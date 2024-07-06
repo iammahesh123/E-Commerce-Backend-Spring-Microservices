@@ -1,6 +1,6 @@
 package com.gfg.userservice.controller;
 
-import com.gfg.userservice.dto.UserDTO;
+import com.gfg.userservice.domain.dto.UserDTO;
 import com.gfg.userservice.response.ResponseCollectionDTO;
 import com.gfg.userservice.service.UserService;
 import jakarta.validation.Valid;

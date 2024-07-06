@@ -1,6 +1,6 @@
-package com.gfg.userservice.serviceImplementation;
+package com.gfg.userservice.service.serviceImpl;
 
-import com.gfg.userservice.dto.AddressDTO;
+import com.gfg.userservice.domain.dto.AddressDTO;
 import com.gfg.userservice.exceptions.AddressNotFoundException;
 import com.gfg.userservice.helperClass.AddressMapping;
 import com.gfg.userservice.repository.AddressRepository;

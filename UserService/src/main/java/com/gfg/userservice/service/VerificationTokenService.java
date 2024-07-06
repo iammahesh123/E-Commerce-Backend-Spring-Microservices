@@ -1,6 +1,6 @@
 package com.gfg.userservice.service;
 
-import com.gfg.userservice.dto.VerificationDTO;
+import com.gfg.userservice.domain.dto.VerificationDTO;
 
 import java.util.List;
 

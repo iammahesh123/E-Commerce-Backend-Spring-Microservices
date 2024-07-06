@@ -1,6 +1,6 @@
 package com.gfg.userservice.service;
 
-import com.gfg.userservice.dto.AddressDTO;
+import com.gfg.userservice.domain.dto.AddressDTO;
 
 import java.util.List;
 

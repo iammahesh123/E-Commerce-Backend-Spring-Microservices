@@ -1,6 +1,6 @@
 package com.gfg.userservice.repository;
 
-import com.gfg.userservice.domain.User;
+import com.gfg.userservice.domain.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

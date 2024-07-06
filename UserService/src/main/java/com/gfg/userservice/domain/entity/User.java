@@ -1,12 +1,14 @@
-package com.gfg.userservice.domain;
+package com.gfg.userservice.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gfg.userservice.audit.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
 
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 
@@ -17,7 +19,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true, exclude = {"addresses", "credential"})
 @Data
 @Builder
-public class User extends AbstractMappedEntity implements Serializable {
+public class User extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -44,4 +46,9 @@ public class User extends AbstractMappedEntity implements Serializable {
 
     @OneToOne(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private Credential credential;
+
+
+    public <T> User(String username, String password, Boolean isEnabled, Boolean isAccountNonExpired, Boolean isCredentialsNonExpired, Boolean isAccountNonLocked, List<T> ts) {
+        super();
+    }
 }

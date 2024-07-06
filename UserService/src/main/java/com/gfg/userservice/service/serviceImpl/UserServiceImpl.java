@@ -1,20 +1,25 @@
-package com.gfg.userservice.serviceImplementation;
+package com.gfg.userservice.service.serviceImpl;
 
-import com.gfg.userservice.domain.Credential;
-import com.gfg.userservice.domain.User;
-import com.gfg.userservice.dto.CredentialDTO;
-import com.gfg.userservice.dto.UserDTO;
+import com.gfg.userservice.domain.dto.UserDTO;
+import com.gfg.userservice.domain.entity.Credential;
+import com.gfg.userservice.domain.entity.User;
 import com.gfg.userservice.exceptions.UserObjectNotFoundException;
-import com.gfg.userservice.helperClass.CredentialMapping;
 import com.gfg.userservice.helperClass.UserMapping;
 import com.gfg.userservice.repository.CredentialRepository;
 import com.gfg.userservice.repository.UserRepository;
+import com.gfg.userservice.security.JwtUtil;
+import com.gfg.userservice.service.EmailService;
 import com.gfg.userservice.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +27,7 @@ import java.util.stream.Collectors;
 @Transactional
 @Slf4j
 @RequiredArgsConstructor
-public class UserServiceImplementation implements UserService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
@@ -86,4 +91,50 @@ public class UserServiceImplementation implements UserService {
         return UserMapping.map(this.userRepository.findByCredentialUsername(username)
                 .orElseThrow(() -> new UserObjectNotFoundException(String.format("User with username: %s not found", username))));
     }
+
+    private final EmailService emailService;
+    private final JwtUtil jwtUtil;
+
+    @Override
+    public void activateAccount(String email) {
+        String activationToken = generateActivationToken(email);
+        emailService.sendSimpleMessage(email, "Account Activation", "Your activation token: " + activationToken);
+    }
+
+    @Override
+    public void forgotPassword(String email) {
+        String resetToken = generateResetToken(email);
+        emailService.sendSimpleMessage(email, "Password Reset", "Your password reset token: " + resetToken);
+    }
+
+    @Override
+    public void resetPassword(String token, String newPassword) {
+        validateResetToken(token);
+        updatePassword(token, newPassword);
+    }
+
+    private String generateActivationToken(String email) {
+        return jwtUtil.generateToken(email);
+    }
+
+    private String generateResetToken(String email) {
+        return jwtUtil.generateToken(email);
+    }
+
+    private void validateResetToken(String token) {
+        String username = jwtUtil.extractUsername(token);
+        if (username == null || !jwtUtil.validateToken(token, username)) {
+            throw new IllegalArgumentException("Invalid or expired token");
+        }
+    }
+
+    private void updatePassword(String token, String newPassword) {
+        String username = jwtUtil.extractUsername(token);
+        User user = userRepository.findByCredentialUsername(username)
+                .orElseThrow(() -> new UserObjectNotFoundException("User not found"));
+        user.getCredential().setPassword(new BCryptPasswordEncoder().encode(newPassword));
+        userRepository.save(user);
+    }
+
+
 }

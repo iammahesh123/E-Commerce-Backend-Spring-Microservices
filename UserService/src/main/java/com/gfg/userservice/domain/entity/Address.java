@@ -1,5 +1,6 @@
-package com.gfg.userservice.domain;
+package com.gfg.userservice.domain.entity;
 
+import com.gfg.userservice.audit.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +13,7 @@ import java.io.Serializable;
 @Table(name = "address")
 @EqualsAndHashCode(callSuper = true, exclude = {"user"})
 @Builder
-public class Address extends AbstractMappedEntity implements Serializable {
+public class Address extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -30,5 +31,5 @@ public class Address extends AbstractMappedEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User  user;
+    private User user;
 }

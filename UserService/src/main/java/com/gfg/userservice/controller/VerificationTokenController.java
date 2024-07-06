@@ -1,6 +1,6 @@
 package com.gfg.userservice.controller;
 
-import com.gfg.userservice.dto.VerificationDTO;
+import com.gfg.userservice.domain.dto.VerificationDTO;
 import com.gfg.userservice.response.ResponseCollectionDTO;
 import com.gfg.userservice.service.VerificationTokenService;
 import jakarta.validation.Valid;

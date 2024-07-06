@@ -1,4 +1,4 @@
-package com.gfg.userservice.configuration;
+package com.gfg.userservice.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

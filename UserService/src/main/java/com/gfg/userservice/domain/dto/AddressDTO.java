@@ -1,4 +1,4 @@
-package com.gfg.userservice.dto;
+package com.gfg.userservice.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

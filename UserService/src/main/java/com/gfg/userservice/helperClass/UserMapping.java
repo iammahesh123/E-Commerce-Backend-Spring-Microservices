@@ -1,10 +1,10 @@
 package com.gfg.userservice.helperClass;
 
 
-import com.gfg.userservice.domain.Credential;
-import com.gfg.userservice.domain.User;
-import com.gfg.userservice.dto.CredentialDTO;
-import com.gfg.userservice.dto.UserDTO;
+import com.gfg.userservice.domain.entity.Credential;
+import com.gfg.userservice.domain.entity.User;
+import com.gfg.userservice.domain.dto.CredentialDTO;
+import com.gfg.userservice.domain.dto.UserDTO;
 
 public interface UserMapping {
 

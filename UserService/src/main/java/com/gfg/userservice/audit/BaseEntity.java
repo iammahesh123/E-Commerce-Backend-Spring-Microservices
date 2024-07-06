@@ -1,4 +1,4 @@
-package com.gfg.userservice.domain;
+package com.gfg.userservice.audit;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
@@ -7,7 +7,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.Instant;
 
-public class AbstractMappedEntity {
+public class BaseEntity {
     private static final long serialVersionUID = 1L;
 
     @CreatedDate

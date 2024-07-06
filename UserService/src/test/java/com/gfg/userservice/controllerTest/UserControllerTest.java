@@ -2,7 +2,7 @@ package com.gfg.userservice.controllerTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gfg.userservice.controller.UserController;
-import com.gfg.userservice.dto.UserDTO;
+import com.gfg.userservice.domain.dto.UserDTO;
 import com.gfg.userservice.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import java.util.Collections;
+
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;

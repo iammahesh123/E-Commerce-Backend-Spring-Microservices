@@ -1,4 +1,4 @@
-package com.gfg.userservice.domain;
+package com.gfg.userservice.domain.enums;
 
 import jakarta.persistence.Column;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum RoleBasesAuthority {
+public enum RoleBasedAuthority {
     ROLE_USER("USER"),
     ROLE_ADMIN("ADMIN");
 

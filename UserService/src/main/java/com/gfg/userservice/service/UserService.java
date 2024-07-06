@@ -1,7 +1,6 @@
 package com.gfg.userservice.service;
 
-import com.gfg.userservice.domain.User;
-import com.gfg.userservice.dto.UserDTO;
+import com.gfg.userservice.domain.dto.UserDTO;
 
 import java.util.List;
 
@@ -14,4 +13,9 @@ public interface UserService {
     UserDTO update(final Integer userId, final UserDTO userDTO);
     void deleteById(final Integer userId);
     UserDTO findByUsername(final String username);
+
+    void activateAccount(String email);
+    void forgotPassword(String email);
+    void resetPassword(String token, String newPassword);
+
 }

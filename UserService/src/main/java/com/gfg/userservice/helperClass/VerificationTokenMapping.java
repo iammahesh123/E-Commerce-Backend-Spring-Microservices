@@ -1,9 +1,9 @@
 package com.gfg.userservice.helperClass;
 
-import com.gfg.userservice.domain.Credential;
-import com.gfg.userservice.domain.VerificationToken;
-import com.gfg.userservice.dto.CredentialDTO;
-import com.gfg.userservice.dto.VerificationDTO;
+import com.gfg.userservice.domain.entity.Credential;
+import com.gfg.userservice.domain.entity.VerificationToken;
+import com.gfg.userservice.domain.dto.CredentialDTO;
+import com.gfg.userservice.domain.dto.VerificationDTO;
 
 public interface VerificationTokenMapping {
     public static VerificationDTO map(final VerificationToken verificationToken) {

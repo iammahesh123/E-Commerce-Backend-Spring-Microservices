@@ -1,8 +1,8 @@
-package com.gfg.userservice.dto;
+package com.gfg.userservice.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.gfg.userservice.domain.RoleBasesAuthority;
+import com.gfg.userservice.domain.enums.RoleBasedAuthority;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,7 +22,7 @@ public class CredentialDTO implements Serializable {
     private Integer credentialId;
     private String username;
     private String password;
-    private RoleBasesAuthority roleBasedAuthority;
+    private RoleBasedAuthority roleBasedAuthority;
     private Boolean isEnabled;
     private Boolean isAccountNonExpired;
     private Boolean isAccountNonLocked;

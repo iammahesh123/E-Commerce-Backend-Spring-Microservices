@@ -1,6 +1,7 @@
-package com.gfg.userservice.domain;
+package com.gfg.userservice.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.gfg.userservice.audit.BaseEntity;
 import com.gfg.userservice.constant.AppConstant;
 import jakarta.persistence.*;
 import lombok.*;
@@ -16,7 +17,7 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class VerificationToken extends AbstractMappedEntity implements Serializable {
+public class VerificationToken extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

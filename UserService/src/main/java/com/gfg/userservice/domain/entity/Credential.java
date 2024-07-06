@@ -1,8 +1,8 @@
-package com.gfg.userservice.domain;
+package com.gfg.userservice.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.gfg.userservice.dto.CredentialDTO;
+import com.gfg.userservice.audit.BaseEntity;
+import com.gfg.userservice.domain.enums.RoleBasedAuthority;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,7 +16,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true, exclude = {"user", "verificationTokens"})
 @Data
 @Builder
-public final class Credential extends AbstractMappedEntity implements Serializable {
+public final class Credential extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -32,7 +32,7 @@ public final class Credential extends AbstractMappedEntity implements Serializab
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    private RoleBasesAuthority roleBasedAuthority;
+    private RoleBasedAuthority roleBasedAuthority;
 
     @Column(name = "is_enabled")
     private Boolean isEnabled;

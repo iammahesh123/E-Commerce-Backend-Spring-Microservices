@@ -1,6 +1,6 @@
-package com.gfg.userservice.serviceImplementation;
+package com.gfg.userservice.service.serviceImpl;
 
-import com.gfg.userservice.dto.VerificationDTO;
+import com.gfg.userservice.domain.dto.VerificationDTO;
 import com.gfg.userservice.exceptions.VerificationTokenNotFoundException;
 import com.gfg.userservice.helperClass.VerificationTokenMapping;
 import com.gfg.userservice.repository.VerificationTokenRepository;

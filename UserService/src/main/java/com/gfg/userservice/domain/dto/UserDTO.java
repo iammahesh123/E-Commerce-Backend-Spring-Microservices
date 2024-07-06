@@ -1,4 +1,4 @@
-package com.gfg.userservice.dto;
+package com.gfg.userservice.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Optional;
 import java.util.Set;
 
 @NoArgsConstructor

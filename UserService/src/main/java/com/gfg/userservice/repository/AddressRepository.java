@@ -1,6 +1,6 @@
 package com.gfg.userservice.repository;
 
-import com.gfg.userservice.domain.Address;
+import com.gfg.userservice.domain.entity.Address;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

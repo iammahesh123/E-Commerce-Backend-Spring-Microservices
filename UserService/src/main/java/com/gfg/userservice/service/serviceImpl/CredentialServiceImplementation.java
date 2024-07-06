@@ -1,8 +1,6 @@
-package com.gfg.userservice.serviceImplementation;
+package com.gfg.userservice.service.serviceImpl;
 
-import com.gfg.userservice.domain.Credential;
-import com.gfg.userservice.domain.User;
-import com.gfg.userservice.dto.CredentialDTO;
+import com.gfg.userservice.domain.dto.CredentialDTO;
 import com.gfg.userservice.exceptions.CredentialNotFoundException;
 import com.gfg.userservice.exceptions.UserObjectNotFoundException;
 import com.gfg.userservice.helperClass.CredentialMapping;

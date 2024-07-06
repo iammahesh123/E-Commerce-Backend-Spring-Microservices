@@ -1,10 +1,10 @@
 package com.gfg.userservice.helperClass;
 
 
-import com.gfg.userservice.domain.Address;
-import com.gfg.userservice.domain.User;
-import com.gfg.userservice.dto.AddressDTO;
-import com.gfg.userservice.dto.UserDTO;
+import com.gfg.userservice.domain.entity.Address;
+import com.gfg.userservice.domain.entity.User;
+import com.gfg.userservice.domain.dto.AddressDTO;
+import com.gfg.userservice.domain.dto.UserDTO;
 
 public interface AddressMapping {
     public static AddressDTO map(final Address address) {

@@ -1,6 +1,6 @@
 package com.gfg.userservice.service;
 
-import com.gfg.userservice.dto.CredentialDTO;
+import com.gfg.userservice.domain.dto.CredentialDTO;
 
 import java.util.List;
 

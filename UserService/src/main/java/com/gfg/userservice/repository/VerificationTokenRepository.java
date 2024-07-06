@@ -1,6 +1,6 @@
 package com.gfg.userservice.repository;
 
-import com.gfg.userservice.domain.VerificationToken;
+import com.gfg.userservice.domain.entity.VerificationToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
