@@ -1,4 +1,4 @@
-package com.gfg.userservice.helperClass;
+package com.gfg.userservice.mapper;
 
 
 import com.gfg.userservice.domain.entity.Address;

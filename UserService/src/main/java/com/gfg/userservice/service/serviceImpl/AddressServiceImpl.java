@@ -2,7 +2,7 @@ package com.gfg.userservice.service.serviceImpl;
 
 import com.gfg.userservice.domain.dto.AddressDTO;
 import com.gfg.userservice.exceptions.AddressNotFoundException;
-import com.gfg.userservice.helperClass.AddressMapping;
+import com.gfg.userservice.mapper.AddressMapping;
 import com.gfg.userservice.repository.AddressRepository;
 import com.gfg.userservice.service.AddressService;
 import jakarta.transaction.Transactional;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Transactional
 @Slf4j
 @RequiredArgsConstructor
-public class AddressServiceImplementation implements AddressService {
+public class AddressServiceImpl implements AddressService {
     @Autowired
     private AddressRepository addressRepository;
     @Override

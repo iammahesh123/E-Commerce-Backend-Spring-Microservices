@@ -32,39 +32,26 @@ public class AddressController {
     }
 
     @GetMapping("/{addressId}")
-    public ResponseEntity<AddressDTO> findById(@PathVariable("addressId") @NotBlank(message = "Input is not blank")
-                                               @Valid final String addressId) {
+    public ResponseEntity<AddressDTO> findById(@PathVariable("addressId") @NotBlank(message = "Input is not blank") @Valid final String addressId) {
         log.info("AddressDTO, fetch the address by using Address Id");
         return ResponseEntity.ok(this.addressService.findById(Integer.parseInt(addressId.strip())));
 
     }
 
     @PostMapping
-    public ResponseEntity<AddressDTO> save(
-            @RequestBody
-            @NotNull(message = "Input must not NULL")
-            @Valid final AddressDTO addressDto
-    ) {
+    public ResponseEntity<AddressDTO> save(@RequestBody @NotNull(message = "Input must not NULL") @Valid final AddressDTO addressDto) {
         log.info("AddressController, Save the address");
         return ResponseEntity.ok(this.addressService.save(addressDto));
     }
 
     @PutMapping("/{addressId}")
-    public ResponseEntity<AddressDTO> update(
-            @RequestBody
-            @NotNull(message = "Input must not NULL")
-            @Valid final AddressDTO addressDto
-    ) {
+    public ResponseEntity<AddressDTO> update(@RequestBody @NotNull(message = "Input must not NULL") @Valid final AddressDTO addressDto) {
         log.info("AddressDTo, Update the address");
         return ResponseEntity.ok(this.addressService.update(addressDto));
     }
 
     @DeleteMapping("/addressId")
-    public ResponseEntity<Boolean> deleteById(
-            @PathVariable("addressId")
-            @NotBlank(message = "Input must not blank")
-            @Valid final String addressId
-    ) {
+    public ResponseEntity<Boolean> deleteById(@PathVariable("addressId") @NotBlank(message = "Input must not blank") @Valid final String addressId) {
         log.info("AddressDTO, Delete the Address");
         this.addressService.deleteById(Integer.parseInt(addressId));
         return ResponseEntity.ok(Boolean.TRUE);

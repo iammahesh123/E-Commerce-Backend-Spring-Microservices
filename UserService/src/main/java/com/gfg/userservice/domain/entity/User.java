@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Email;
 import lombok.*;
 
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
@@ -20,6 +21,7 @@ import java.util.Set;
 @Data
 @Builder
 public class User extends BaseEntity implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -39,6 +41,7 @@ public class User extends BaseEntity implements Serializable {
     @Email(message = "*Input must be in Email format!**")
     private String email;
     private String phone;
+
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Address> addresses;
