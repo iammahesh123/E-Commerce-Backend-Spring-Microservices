@@ -2,7 +2,7 @@ package com.gfg.userservice.service.serviceImpl;
 
 import com.gfg.userservice.domain.dto.VerificationDTO;
 import com.gfg.userservice.exceptions.VerificationTokenNotFoundException;
-import com.gfg.userservice.helperClass.VerificationTokenMapping;
+import com.gfg.userservice.mapper.VerificationTokenMapping;
 import com.gfg.userservice.repository.VerificationTokenRepository;
 import com.gfg.userservice.service.VerificationTokenService;
 import jakarta.transaction.Transactional;
@@ -18,12 +18,12 @@ import java.util.stream.Collectors;
 @Transactional
 @Slf4j
 @RequiredArgsConstructor
-public class  VerificationTokenServiceImplementation implements VerificationTokenService {
+public class VerificationTokenServiceImpl implements VerificationTokenService {
 
     private VerificationTokenRepository verificationTokenRepository;
 
     @Autowired
-    public VerificationTokenServiceImplementation(VerificationTokenRepository verificationTokenRepository) {
+    public VerificationTokenServiceImpl(VerificationTokenRepository verificationTokenRepository) {
         this.verificationTokenRepository = verificationTokenRepository;
     }
 

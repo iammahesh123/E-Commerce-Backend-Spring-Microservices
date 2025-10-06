@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,16 +32,35 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeRequests()
-                .requestMatchers("/api/users/activate-account", "/api/users/forgot-password", "/api/users/reset-password").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(auth -> auth
+                        // Allow Swagger UI and OpenAPI docs
+                        .requestMatchers(
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html",
+                                "/swagger-resources/**",
+                                "/webjars/**"
+                        ).permitAll()
+
+                        // Allow public user endpoints
+                        .requestMatchers(
+                                "/api/users/activate-account",
+                                "/api/users/forgot-password",
+                                "/api/users/reset-password"
+                        ).permitAll()
+
+                        // All other endpoints require authentication
+                        .anyRequest().authenticated()
+                )
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {

@@ -1,10 +1,9 @@
 package com.gfg.userservice.service.serviceImpl;
 
 import com.gfg.userservice.domain.dto.UserDTO;
-import com.gfg.userservice.domain.entity.Credential;
 import com.gfg.userservice.domain.entity.User;
 import com.gfg.userservice.exceptions.UserObjectNotFoundException;
-import com.gfg.userservice.helperClass.UserMapping;
+import com.gfg.userservice.mapper.UserMapper;
 import com.gfg.userservice.repository.CredentialRepository;
 import com.gfg.userservice.repository.UserRepository;
 import com.gfg.userservice.security.JwtUtil;
@@ -13,15 +12,12 @@ import com.gfg.userservice.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -30,53 +26,46 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final EmailService emailService;
+    private final JwtUtil jwtUtil;
+    private final UserMapper userMapper;
 
     private final CredentialRepository credentialRepository;
     @Override
     public List<UserDTO> findAll() {
         log.info("*****find all user*****");
-
-        return this.userRepository.findAll()
-                .stream().map(UserMapping::map)
-                .distinct().collect(Collectors.toList());
+        return userRepository.findAll().stream().map(userMapper::toDTO).toList();
     }
 
     @Override
     public UserDTO findById(Integer userId) {
         log.info("*****find by id*******");
-        return this.userRepository.findById(userId)
-                .map(UserMapping::map)
-                .orElseThrow(() -> new UserObjectNotFoundException(String.format("User not found with is id: %d",userId)));
+        User user = userRepository.findById(userId).orElseThrow(() -> new UserObjectNotFoundException(String.format("User not found with is id: %d",userId)));
+        return userMapper.toDTO(user);
     }
-
-
-//    @Override
-//    public UserDTO save(final UserDTO userDto) {
-//        log.info("*** UserDto, service; save user *");
-//        return UserMapping.map(this.userRepository.save(UserMapping.map(userDto)));
-//    }
-
 
     @Override
     public UserDTO save(final UserDTO userDto) {
         log.info("*** UserDto, service; save user *");
-        return UserMapping.map(this.userRepository.save(UserMapping.map(userDto)));
+        User user = new User();
+        BeanUtils.copyProperties(userDto, user);
+        User savedUser = userRepository.save(user);
+        return userMapper.toDTO(savedUser);
     }
-
-
 
     @Override
     public UserDTO update(UserDTO userDTO) {
         log.info("************update the user******************");
-        return UserMapping.map(this.userRepository.save(UserMapping.map(userDTO)));
+        return userMapper.toDTO(this.userRepository.save(userMapper.toEntity(userDTO)));
 
     }
 
     @Override
     public UserDTO update(Integer userId, UserDTO userDTO) {
         log.info("*** UserDto, service; update user with userId *");
-        return UserMapping.map(this.userRepository.save(
-                UserMapping.map(this.findById(userId))));
+        BeanUtils.copyProperties(userDTO, this.findById(userId), "id", "credential", "addresses");
+        User updatedUser = userRepository.save(userMapper.toEntity(userDTO));
+        return userMapper.toDTO(updatedUser);
     }
 
     @Override
@@ -88,12 +77,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO findByUsername(String username) {
         log.info("*** UserDto, service; fetch user with username *");
-        return UserMapping.map(this.userRepository.findByCredentialUsername(username)
+        return userMapper.toDTO(this.userRepository.findByCredentialUsername(username)
                 .orElseThrow(() -> new UserObjectNotFoundException(String.format("User with username: %s not found", username))));
     }
-
-    private final EmailService emailService;
-    private final JwtUtil jwtUtil;
 
     @Override
     public void activateAccount(String email) {
@@ -135,6 +121,4 @@ public class UserServiceImpl implements UserService {
         user.getCredential().setPassword(new BCryptPasswordEncoder().encode(newPassword));
         userRepository.save(user);
     }
-
-
 }

@@ -3,7 +3,7 @@ package com.gfg.userservice.service.serviceImpl;
 import com.gfg.userservice.domain.dto.CredentialDTO;
 import com.gfg.userservice.exceptions.CredentialNotFoundException;
 import com.gfg.userservice.exceptions.UserObjectNotFoundException;
-import com.gfg.userservice.helperClass.CredentialMapping;
+import com.gfg.userservice.mapper.CredentialMapping;
 import com.gfg.userservice.repository.CredentialRepository;
 import com.gfg.userservice.repository.UserRepository;
 import com.gfg.userservice.service.CredentialService;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @Transactional
 @Slf4j
 @RequiredArgsConstructor
-public class CredentialServiceImplementation implements CredentialService {
+public class CredentialServiceImpl implements CredentialService {
 
     @Autowired
     private CredentialRepository credentialRepository;
