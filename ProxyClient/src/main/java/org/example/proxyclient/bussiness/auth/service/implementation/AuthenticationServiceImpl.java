@@ -32,7 +32,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                     authenticationRequest.getUsername(), authenticationRequest.getPassword()));
         }
         catch (BadCredentialsException e) {
-            throw new IllegalAuthenticationCredentialsException("#### Bad credentials! ####");
+            throw new IllegalAuthenticationCredentialsException("Invalid username or password");
         }
 
         return new AuthenticationResponse(this.jwtService.generateToken(this.userDetailsService
@@ -41,6 +41,15 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public Boolean authenticate(final String jwt) {
-        return null;
+        // This method validates JWT token - delegate to JwtService
+        if (jwt == null || jwt.isBlank()) {
+            return false;
+        }
+        try {
+            return jwtService.validateToken(jwt);
+        } catch (Exception e) {
+            log.warn("JWT validation failed: {}", e.getMessage());
+            return false;
+        }
     }
 }

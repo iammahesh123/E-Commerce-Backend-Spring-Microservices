@@ -13,10 +13,9 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,8 +28,7 @@ public class UserServiceImpl implements UserService {
     private final EmailService emailService;
     private final JwtUtil jwtUtil;
     private final UserMapper userMapper;
-
-    private final CredentialRepository credentialRepository;
+    private final PasswordEncoder passwordEncoder;
     @Override
     public List<UserDTO> findAll() {
         log.info("*****find all user*****");
@@ -118,7 +116,7 @@ public class UserServiceImpl implements UserService {
         String username = jwtUtil.extractUsername(token);
         User user = userRepository.findByCredentialUsername(username)
                 .orElseThrow(() -> new UserObjectNotFoundException("User not found"));
-        user.getCredential().setPassword(new BCryptPasswordEncoder().encode(newPassword));
+        user.getCredential().setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(user);
     }
 }

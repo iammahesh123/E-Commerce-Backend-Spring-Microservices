@@ -22,37 +22,54 @@ public class ApiExceptionHandler {
             MethodArgumentNotValidException.class,
             HttpMessageNotReadableException.class,
     })
-    public <T extends BindException> ResponseEntity<ExceptionMsg> handleValidationException(final T e) {
-
-        log.info("**ApiExceptionHandler controller, handle validation exception*\n");
+    public ResponseEntity<ExceptionMsg> handleValidationException(final BindException e) {
+        log.error("Validation error: {}", e.getBindingResult().getFieldErrors());
         final var badRequest = HttpStatus.BAD_REQUEST;
+        String message = e.getBindingResult().getFieldError() != null
+                ? e.getBindingResult().getFieldError().getDefaultMessage()
+                : "Validation failed";
 
         return new ResponseEntity<>(
                 ExceptionMsg.builder()
-                        .msg("*" + e.getBindingResult().getFieldError().getDefaultMessage() + "!**")
+                        .msg(message)
                         .httpStatus(badRequest)
-                        .timestamp(ZonedDateTime
-                                .now(ZoneId.systemDefault()))
+                        .timestamp(ZonedDateTime.now(ZoneId.systemDefault()))
                         .build(), badRequest);
     }
 
-    @ExceptionHandler(value = {
-            FavouriteNotFoundException.class,
-    })
-    public <T extends RuntimeException> ResponseEntity<ExceptionMsg> handleApiRequestException(final T e) {
-
-        log.info("**ApiExceptionHandler controller, handle API request*\n");
-        final var badRequest = HttpStatus.BAD_REQUEST;
-
+    @ExceptionHandler(FavouriteNotFoundException.class)
+    public ResponseEntity<ExceptionMsg> handleFavouriteNotFoundException(final FavouriteNotFoundException e) {
+        log.error("Favourite not found: {}", e.getMessage());
+        final var notFound = HttpStatus.NOT_FOUND;
         return new ResponseEntity<>(
                 ExceptionMsg.builder()
-                        .msg("#### " + e.getMessage() + "! ####")
+                        .msg(e.getMessage())
+                        .httpStatus(notFound)
+                        .timestamp(ZonedDateTime.now(ZoneId.systemDefault()))
+                        .build(), notFound);
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<ExceptionMsg> handleIllegalStateException(final IllegalStateException e) {
+        log.error("Illegal state: {}", e.getMessage());
+        final var badRequest = HttpStatus.BAD_REQUEST;
+        return new ResponseEntity<>(
+                ExceptionMsg.builder()
+                        .msg(e.getMessage())
                         .httpStatus(badRequest)
-                        .timestamp(ZonedDateTime
-                                .now(ZoneId.systemDefault()))
+                        .timestamp(ZonedDateTime.now(ZoneId.systemDefault()))
                         .build(), badRequest);
     }
 
-
-
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ExceptionMsg> handleGlobalException(final Exception e) {
+        log.error("Internal server error: {}", e.getMessage(), e);
+        final var internalError = HttpStatus.INTERNAL_SERVER_ERROR;
+        return new ResponseEntity<>(
+                ExceptionMsg.builder()
+                        .msg("An internal error occurred. Please try again later.")
+                        .httpStatus(internalError)
+                        .timestamp(ZonedDateTime.now(ZoneId.systemDefault()))
+                        .build(), internalError);
+    }
 }

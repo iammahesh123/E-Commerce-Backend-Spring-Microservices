@@ -44,7 +44,7 @@ spring:
         - id: PROXY-CLIENT
           uri: lb://ProxyClient
           predicates:
-            - Path=/**
+            - Path=/api/**
       globalcors:
         cors-configurations:
           '[/**]':
